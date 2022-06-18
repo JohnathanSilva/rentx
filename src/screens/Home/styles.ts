@@ -10,15 +10,18 @@ export const Container = styled.View`
 
 export const Header = styled.View`
     width: 100%;
-    height: 25%;
+    height: 113px;
 
     background: ${({ theme }) => theme.colors.header};
     
-    align-items: center;
-    justify-content: flex-end;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-direction: row;
+
+    padding: 24px;
 `;
 
-export const Title = styled.Text`
+export const TotalCars = styled.Text`
     font-size: 16px;
     font-family: ${({ theme }) => theme.fonts.primary_regular};
     

@@ -6,7 +6,7 @@ import Logo from '../../assets/logo.svg';
 
 import { CardCar } from '../../components/CardCar';
 
-import { Container, Header, TotalCars} from './styles'; 
+import { Container, Header, TotalCars, CarList} from './styles'; 
 
 export function Home() {
     const carData = {
@@ -33,8 +33,11 @@ export function Home() {
                 />
                 <TotalCars>Total de 12 carros</TotalCars>
             </Header>
-           <CardCar data={carData} />
-           <CardCar data={carData} />
+            <CarList 
+                data={[1,2,3,4,5,6,7]}
+                keyExtractor={item => String(item)}
+                renderItem={({ item}) => <CardCar data={carData}/>}
+            />
         </Container>
     );
 }

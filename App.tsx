@@ -4,6 +4,8 @@ import { ThemeProvider } from 'styled-components'
 import { useFonts, Inter_400Regular, Inter_500Medium} from '@expo-google-fonts/inter'
 import { Archivo_400Regular, Archivo_500Medium, Archivo_600SemiBold } from  '@expo-google-fonts/archivo'
 
+import { GestureHandlerRootView } from 'react-native-gesture-handler'; 
+
 import theme  from './src/styles/theme';
 
 import { CarDetails } from './src/screens/CarDetails';
@@ -22,8 +24,10 @@ export default function App() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <CarDetails />
-    </ThemeProvider>
+    <GestureHandlerRootView style={{flex: 1}}>
+      <ThemeProvider theme={theme}>
+        <CarDetails />
+      </ThemeProvider>
+    </GestureHandlerRootView>
   );
 }

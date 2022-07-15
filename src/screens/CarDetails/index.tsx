@@ -1,6 +1,8 @@
 import React from 'react';
-import { Accessory } from '../../components/Accessory';
+import { StatusBar } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
+import { Accessory } from '../../components/Accessory';
 import { BackButton } from '../../components/BackButton';
 import { ImageSlide } from '../../components/ImageSlider';
 
@@ -30,10 +32,25 @@ import {
 import { Button } from '../../components/Button';
 
 export function CarDetails(){
+    const navigation = useNavigation();
+
+    function handleConfirmRental(){
+        navigation.navigate('Scheduling');
+    }
+
+    function handleBackHome(){
+        navigation.navigate('Home');
+    }
+
     return(
         <Container>
+            <StatusBar 
+                 barStyle="dark-content"
+                 backgroundColor="transparent"
+                 translucent
+            />
             <Header>
-                <BackButton onPress={() => {}} />
+                <BackButton onPress={() => {handleBackHome}} />
             </Header>
 
             <CarImages>
@@ -87,7 +104,8 @@ export function CarDetails(){
             </Content>
             <Footer>
                 <Button 
-                    title='Escolher período do aluguel'
+                   title='Escolher período do aluguel'
+                   onPress={handleConfirmRental}
                 />
             </Footer>
         </Container>

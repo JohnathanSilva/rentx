@@ -1,6 +1,8 @@
 import React from 'react';
 import { Feather } from '@expo/vector-icons';
 import { useTheme } from 'styled-components';
+import { useNavigation } from '@react-navigation/native';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 import { Accessory } from '../../components/Accessory';
 import { BackButton } from '../../components/BackButton';
@@ -40,12 +42,23 @@ import {
 } from './styles';
 
 import { Button } from '../../components/Button';
-import { RFValue } from 'react-native-responsive-fontsize';
+import { StatusBar } from 'react-native';
 
 export function SchedulingDetails(){
     const theme = useTheme();
+    const navigation = useNavigation();
+
+    function handleConfirmRental(){
+        navigation.navigate('SchedulingComplete');
+    }
+
     return(
         <Container>
+            <StatusBar 
+                barStyle='dark-content'
+                backgroundColor='transparent'
+                translucent
+            />
             <Header>
                 <BackButton onPress={() => {}} />
             </Header>
@@ -126,6 +139,7 @@ export function SchedulingDetails(){
                 <Button 
                     title='Alugar agora'
                     color={theme.colors.success}
+                    onPress={handleConfirmRental}
                 />
             </Footer>
         </Container>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
@@ -14,6 +15,12 @@ import { Container, Header, Title, DateInfo, Text, DateRent, DateValue, Content,
 
 export function Scheduling() {
     const theme = useTheme();
+    const navigation = useNavigation();
+
+    function handleConfirmRental(){
+        navigation.navigate('SchedulingDetails');
+    }
+
     return(
         <Container>
              <StatusBar 
@@ -56,6 +63,7 @@ export function Scheduling() {
                 <Button 
                     title='Confirmar'
                     color={theme.colors.main_light}
+                    onPress={handleConfirmRental}
                 />
             </Footer>
         </Container>

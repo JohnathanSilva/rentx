@@ -4,22 +4,13 @@ import { RFValue } from 'react-native-responsive-fontsize';
 
 import GasolineSvg from '../../assets/gasoline.svg';
 
-import theme from '../../styles/theme';
+import { CarDTO } from '../../dtos/CarDTO';
 
 import { Container, Details, Brand, NameCar, About, Rent, Period, Price, Type, CarImage} from './styles'; 
 
-interface CarData {
-    brand: string;
-    name: string;
-    rent: {
-        period: string;
-        price: number;
-    },
-    thumbnail: string;
-}
 
 interface Props extends RectButtonProps {
-    data: CarData;
+    data: CarDTO;
 }
 
 export function CardCar ({ data, ...rest }: Props){

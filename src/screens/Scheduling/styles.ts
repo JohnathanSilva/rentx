@@ -22,6 +22,10 @@ export const Header = styled.View`
     padding-top: ${getStatusBarHeight() + 49}px;
 `;
 
+export const ButtonWrapper = styled.View`
+    align-items: flex-start;
+`;
+
 export const Title = styled.Text`
     font-size: ${RFValue(30)}px;
     font-family: ${({ theme }) => theme.fonts.secondary_semibold};

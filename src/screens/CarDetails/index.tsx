@@ -1,6 +1,6 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 import { Accessory } from '../../components/Accessory';
 import { BackButton } from '../../components/BackButton';
@@ -12,6 +12,9 @@ import ForceSvg from '../../assets/force.svg';
 import GasolineSvg from '../../assets/gasoline.svg';
 import ExchangeSvg from '../../assets/exchange.svg';
 import PeopleSvg from '../../assets/people.svg';
+
+import { Button } from '../../components/Button';
+import { CarDTO } from '../../dtos/CarDTO';
 
 import { 
     Container, 
@@ -29,17 +32,22 @@ import {
     About,
     Footer 
 } from './styles';
-import { Button } from '../../components/Button';
+
+interface Params{
+    car: CarDTO
+}
 
 export function CarDetails(){
     const navigation = useNavigation();
-
+    const route = useRoute();
+    const { car } = route.params as Params; 
+ 
     function handleConfirmRental(){
         navigation.navigate('Scheduling');
     }
 
-    function handleBackHome(){
-        navigation.navigate('Home');
+    function handleBack(){
+        navigation.goBack();
     }
 
     return(
@@ -50,57 +58,37 @@ export function CarDetails(){
                  translucent
             />
             <Header>
-                <BackButton onPress={() => {handleBackHome}} />
+                <BackButton onPress={handleBack} />
             </Header>
 
             <CarImages>
                 <ImageSlide 
-                    imageUrl={['https://www.webmotors.com.br/imagens/prod/348415/AUDI_RS5_2.9_V6_TFSI_GASOLINA_SPORTBACK_QUATTRO_STRONIC_34841515342559092.webp?s=fill&w=236&h=135&q=70&t=true']}
+                    imageUrl={car.photos}
                 />
             </CarImages>
             <Content>
                 <Details>
                     <Description>
-                    <Brand>Lamborghini</Brand>
-                    <Name>Huracan</Name>
+                    <Brand>{car.brand}</Brand>
+                    <Name>{car.name}</Name>
                     </Description>
                 <Rent>
-                    <Period>Ao dia</Period>
-                    <Price>R$ 580</Price>
+                    <Period>{car.rent.period}</Period>
+                    <Price>R$ {car.rent.price}</Price>
                 </Rent>
                 </Details>
                 <Accessories>
-                    <Accessory 
-                        name='380km'
-                        icon={SpeedSvg}
-                    />
-                    <Accessory 
-                        name='380km'
-                        icon={ArrowSvg}
-                    />
-                    <Accessory 
-                        name='380km'
-                        icon={ForceSvg}
-                    />
-                    <Accessory 
-                        name='380km'
-                        icon={GasolineSvg}
-                    />
-                    <Accessory 
-                        name='380km'
-                        icon={ExchangeSvg}
-                    />
-                    <Accessory 
-                        name='380km'
-                        icon={PeopleSvg}
-                    />
+                   {
+                       car.accessories.map(accessory => (
+                           <Accessory 
+                               key={accessory.type}
+                               name={accessory.name}
+                               icon={SpeedSvg}
+                           />
+                        ))
+                   }
                 </Accessories>
-                <About>
-                    Este é automóvel desportivo. Surgiu do 
-                    lendário touro de lide indultado na praça Real 
-                    Maestranza de Sevilla. É um belíssimo carro 
-                    para quem gosta de acelerar.
-                </About>
+                <About>{car.about}</About>
             </Content>
             <Footer>
                 <Button 

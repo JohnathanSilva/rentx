@@ -11,7 +11,7 @@ import { BackButton } from '../../components/BackButton';
 import { Button } from '../../components/Button';
 import { Calendar } from '../../components/Calendar';
 
-import { Container, Header, Title, DateInfo, Text, DateRent, DateValue, Content, Footer} from './styles';
+import { Container, Header, ButtonWrapper, Title, DateInfo, Text, DateRent, DateValue, Content, Footer} from './styles';
 
 export function Scheduling() {
     const theme = useTheme();
@@ -19,6 +19,10 @@ export function Scheduling() {
 
     function handleConfirmRental(){
         navigation.navigate('SchedulingDetails');
+    }
+
+    function handleBack(){
+        navigation.goBack();
     }
 
     return(
@@ -29,10 +33,12 @@ export function Scheduling() {
                  translucent
             />
             <Header>
-                <BackButton 
-                    onPress={() => {}} 
-                    color={theme.colors.shape}
-                />
+                <ButtonWrapper>
+                    <BackButton 
+                        onPress={handleBack} 
+                        color={theme.colors.shape}
+                    />
+                </ButtonWrapper>
 
                 <Title>
                     Escolha uma {'\n'}

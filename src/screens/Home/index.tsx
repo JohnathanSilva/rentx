@@ -9,6 +9,7 @@ import { api }  from '../../services/api'
 
 import { CardCar } from '../../components/CardCar';
 import { Load } from '../../components/Load';
+import { CarDTO } from '../../dtos/CarDTO';
 
 import { Container, Header, TotalCars, CarList} from './styles'; 
 
@@ -16,19 +17,9 @@ export function Home() {
     const [cars, setCars] = useState([]);
     const [loading, setLoading] = useState(true);
     const navigation = useNavigation();
-
-    const carData = {
-        brand: 'Audi',
-        name: 'RS 5 Coupé',
-        rent:{
-            period: 'Ao dia',
-            price: 120,
-        },
-        thumbnail: 'https://www.webmotors.com.br/imagens/prod/348415/AUDI_RS5_2.9_V6_TFSI_GASOLINA_SPORTBACK_QUATTRO_STRONIC_34841515342559092.webp?s=fill&w=236&h=135&q=70&t=true'
-    }
     
-    function handleCarDetails(){
-        navigation.navigate('CarDetails');
+    function handleCarDetails( car: CarDTO){
+        navigation.navigate('CarDetails', { car });
     }
 
     useEffect(() => {
@@ -67,7 +58,7 @@ export function Home() {
                     renderItem={    
                                 ({ item}) => 
                                     <CardCar data={item} 
-                                    onPress={handleCarDetails} />
+                                    onPress={() => handleCarDetails(item)} />
                                 }
                 />
             }

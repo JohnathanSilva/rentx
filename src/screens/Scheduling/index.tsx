@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
@@ -9,11 +9,13 @@ import ArrowSvg from '../../assets/arrow.svg';
 
 import { BackButton } from '../../components/BackButton';
 import { Button } from '../../components/Button';
-import { Calendar } from '../../components/Calendar';
+import { Calendar, DayProps, generateInterval, MarkedDatesProps } from '../../components/Calendar';
 
 import { Container, Header, ButtonWrapper, Title, DateInfo, Text, DateRent, DateValue, Content, Footer} from './styles';
 
 export function Scheduling() {
+    const [lastSelectedDate, setLastSelectedDate] = useState<DayProps>({} as DayProps);
+    const [markedDates, setMarkedDates] = useState<MarkedDatesProps>( {} as MarkedDatesProps);
     const theme = useTheme();
     const navigation = useNavigation();
 
@@ -23,6 +25,20 @@ export function Scheduling() {
 
     function handleBack(){
         navigation.goBack();
+    }
+
+    function handleChangeDate(date : DayProps){
+        let start = !lastSelectedDate.timestamp ? date : lastSelectedDate;
+        let end = date;
+
+        if( start.timestamp > end.timestamp){
+            start = end;
+            end = start;
+        }
+
+        setLastSelectedDate(end);
+        const interval = generateInterval(start, end);
+        setMarkedDates(interval);
     }
 
     return(
@@ -63,7 +79,10 @@ export function Scheduling() {
                 </DateInfo>
             </Header>
             <Content>
-                <Calendar />
+                <Calendar 
+                    markedDates={markedDates}
+                    onDayPress={handleChangeDate}
+                />
             </Content>
             <Footer>
                 <Button 

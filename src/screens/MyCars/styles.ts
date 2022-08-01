@@ -73,3 +73,36 @@ export const SchedulingsQuantity= styled.Text`
     font-family: ${({ theme }) => theme.fonts.secondary_medium}; 
     color: ${({ theme }) => theme.colors.title};
 `;
+
+export const CarWrapper = styled.View`
+    margin-bottom: 16px;
+`;
+
+export const CardCarFooter = styled.View`
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: ${({ theme }) => theme.colors.background_secondary};
+
+    padding: 15px 24px;
+    margin-top: -12px;
+`;
+
+export const CardCarFooterTitle = styled.Text`
+    font-size: ${RFValue(10)}px;
+    font-family: ${({ theme })=> theme.fonts.secondary_medium};
+    color: ${({ theme }) => theme.colors.text_detail};
+`;
+
+export const CardCarFooterPeriod = styled.View`
+    flex-direction: row;
+`;
+
+export const CardCarFooterDate = styled.Text`
+    font-size: ${RFValue(13)}px;
+    font-family: ${({ theme }) => theme.fonts.primary_regular};
+    color: ${({ theme }) => theme.colors.title};
+`;
+

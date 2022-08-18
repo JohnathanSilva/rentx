@@ -39,7 +39,7 @@ export function MyCars(){
     const [cars, setCars] = useState<CarProps[]>([]);
     const [loading, setLoading] = useState(true);
     const theme = useTheme();
-    const navegation = useNavigation();
+    const navegation = useNavigation<any>();
 
     function handleBack(){
         navegation.goBack();
@@ -84,7 +84,12 @@ export function MyCars(){
             <Content>
                 <Schedulings>
                     <SchedulingsTitle>Agendamentos feitos</SchedulingsTitle>
-                    <SchedulingsQuantity>{cars.length}</SchedulingsQuantity>
+                    {
+                        !loading &&
+                        <SchedulingsQuantity>
+                            {cars.length}
+                        </SchedulingsQuantity>
+                    }
                 </Schedulings>
                 { loading ? <Load /> 
                     :

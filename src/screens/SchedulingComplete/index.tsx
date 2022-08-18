@@ -12,7 +12,7 @@ import { Conatiner, Content, Title, TextMessage, Footer} from './styles';
 
 export function SchedulingComplete(){
     const { width } = useWindowDimensions();
-    const navigation = useNavigation();
+    const navigation = useNavigation<any>();
 
     function handleBackHome(){
         navigation.navigate('Home');

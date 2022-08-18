@@ -55,7 +55,7 @@ interface RentalPeriod {
 export function SchedulingDetails(){
     const [rentalPeriod, setRentalPeriod] = useState<RentalPeriod>({} as RentalPeriod);
     const theme = useTheme();
-    const navigation = useNavigation();
+    const navigation = useNavigation<any>();
     const route = useRoute();
     const { car, dates } = route.params as Params;
 

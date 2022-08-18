@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StatusBar } from 'react-native';
+import { StatusBar, BackHandler } from 'react-native';
 import { useTheme } from 'styled-components';
 import { useNavigation } from '@react-navigation/native';
 import { RFValue } from 'react-native-responsive-fontsize';
@@ -19,7 +19,7 @@ export function Home() {
     const [cars, setCars] = useState([]);
     const [loading, setLoading] = useState(true);
     const theme = useTheme();
-    const navigation = useNavigation();
+    const navigation = useNavigation<any>();
 
     function handleCarDetails( car: CarDTO){
         navigation.navigate('CarDetails', { car });
@@ -43,6 +43,12 @@ export function Home() {
         fetchCars();
     },[]);
 
+    useEffect(() => {
+        BackHandler.addEventListener('hardwareBackPress', () => {
+            return true;
+        });
+    },[]);
+
     return (
         <Container>
             <StatusBar 
@@ -55,7 +61,12 @@ export function Home() {
                     width={RFValue(108)}
                     height={RFValue(12)}
                 />
-                <TotalCars>Total de {cars.length} carros</TotalCars>
+                {
+                    !loading &&
+                    <TotalCars>
+                        Total de {cars.length} carros
+                    </TotalCars>
+                }
             </Header>
             { loading ? <Load /> 
                 :
@@ -69,7 +80,7 @@ export function Home() {
                                 }
                 />
             }
-            <MyCarsButton>
+            <MyCarsButton style={{bottom: 13, right: 22}}>
                 <Ionicons
                     name="ios-car-sport"
                     size={32}

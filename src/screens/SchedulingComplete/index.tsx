@@ -8,7 +8,7 @@ import DoneSvg from '../../assets/done.svg';
 
 import { ConfirmButton } from '../../components/ConfirmButton';
 
-import { Conatiner, Content, Title, TextMessage, Footer} from './styles';
+import { Container, Content, Title, TextMessage, Footer} from './styles';
 
 export function SchedulingComplete(){
     const { width } = useWindowDimensions();
@@ -19,7 +19,7 @@ export function SchedulingComplete(){
     }
 
     return(
-        <Conatiner>
+        <Container>
             <StatusBar 
                  barStyle="light-content"
                  backgroundColor="transparent"
@@ -43,6 +43,6 @@ export function SchedulingComplete(){
             <Footer>
                 <ConfirmButton title='Ok' onPress={handleBackHome}/>
             </Footer>
-        </Conatiner>
+        </Container>
     );
 }

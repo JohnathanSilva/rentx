@@ -21,7 +21,7 @@ import LogoSvg from '../../assets/logo.svg';
 import { api }  from '../../services/api'
 
 import { CardCar } from '../../components/CardCar';
-import { Load } from '../../components/Load';
+import { LoadAnimation } from '../../components/LoadAnimation';
 import { CarDTO } from '../../dtos/CarDTO';
 
 import { Container, Header, TotalCars, CarList } from './styles'; 
@@ -106,7 +106,7 @@ export function Home() {
                     </TotalCars>
                 }
             </Header>
-            { loading ? <Load /> 
+            { loading ? <LoadAnimation /> 
                 :
                 <CarList 
                     data={cars}

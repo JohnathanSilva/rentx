@@ -8,7 +8,7 @@ import { BackButton } from '../../components/BackButton';
 import { CarDTO } from '../../dtos/CarDTO';
 import { api } from '../../services/api';
 import { CardCar } from '../../components/CardCar';
-import { Load } from '../../components/Load';
+import { LoadAnimation } from '../../components/LoadAnimation';
 
 import { 
     Container, 
@@ -91,7 +91,7 @@ export function MyCars(){
                         </SchedulingsQuantity>
                     }
                 </Schedulings>
-                { loading ? <Load /> 
+                { loading ? <LoadAnimation /> 
                     :
                     <FlatList 
                         data={cars}

@@ -5,8 +5,6 @@ import { Archivo_400Regular, Archivo_500Medium, Archivo_600SemiBold } from  '@ex
 
 import * as SplashScreen from 'expo-splash-screen';
 
-import { GestureHandlerRootView } from 'react-native-gesture-handler'; 
-
 import theme  from './src/styles/theme';
 
 import { Routes } from './src/routes'; 
@@ -28,10 +26,8 @@ export default function App() {
   SplashScreen.hideAsync();
 
   return (
-    <GestureHandlerRootView style={{flex: 1}}>
       <ThemeProvider theme={theme}>
         <Routes />
       </ThemeProvider>
-    </GestureHandlerRootView>
   );
 }
